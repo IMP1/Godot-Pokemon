@@ -6,7 +6,7 @@ signal player_stopped_signal
 signal player_entering_door_signal
 signal player_entered_door_signal
 
-const LandingDustEffect = preload("res://LandingDustEffect.tscn")
+const LandingDustEffect = preload("res://Objects/LandingDustEffect.tscn")
 
 export var walk_speed = 4.0
 export var jump_speed = 4.0
