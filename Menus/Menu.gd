@@ -19,8 +19,7 @@ func load_party_screen():
 	screen_loaded = ScreenLoaded.PARTY_SCREEN
 	var party_screen = PokemonPartyScreen.instance()
 	add_child(party_screen)
-	
-	
+
 func unload_party_screen():
 	menu.visible = true
 	screen_loaded = ScreenLoaded.JUST_MENU
