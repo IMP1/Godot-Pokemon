@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Pokemon Data/Pokemon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Pokemon/Pokemon43.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 36, 0, 18, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 72, 0, 18, 32 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Oddish" instance=ExtResource( 1 )]
+pokedex_number = 43
+pokedex_entry = "During the day, it keeps its face buried in the ground. At night, it wanders around sowing its seeds."
+base_hp = 45
+base_attack = 50
+base_defence = 55
+base_special_attack = 75
+base_special_defence = 65
+base_speed = 30
+learnable_tms = PoolIntArray( 6, 9, 10, 11, 17, 19, 21, 22, 27, 32, 36, 42, 43, 44, 45 )
+learnable_hms = PoolIntArray( 1, 5 )
+
+[node name="Menu" parent="Sprites" index="4"]
+frames = SubResource( 3 )
