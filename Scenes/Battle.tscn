@@ -1,0 +1,417 @@
+[gd_scene load_steps=32 format=2]
+
+[ext_resource path="res://Assets/UI/Battle/BattleBackground.png" type="Texture" id=1]
+[ext_resource path="res://Assets/UI/Battle/BattleUI.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Pokemon/Pokemon43.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Pokemon/Pokemon60.png" type="Texture" id=4]
+[ext_resource path="res://Assets/UI/Types_Statuses.png" type="Texture" id=5]
+[ext_resource path="res://Assets/UI/pkmnfl.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Assets/UI/Battle/StatEffects.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/Battle.gd" type="Script" id=8]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 249, 6, 240, 112 )
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 28, 56 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../EnemyPokemon/Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../../EnemyPokemon/Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 148, 15 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Tackle"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 28, 56 ), Vector2( 15, 56 ), Vector2( 52, 56 ), Vector2( 24, 56 ), Vector2( 28, 56 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../EnemyPokemon/Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.35, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../../EnemyPokemon/Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.35, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 148, 15 ), Vector2( 148, 15 ), Vector2( 154, 15 ), Vector2( 148, 15 ) ]
+}
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 99, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 7 )
+region = Rect2( 205, 161, 255, 255 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 2 )
+region = Rect2( 3, 44, 106, 37 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 11
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 10
+font_data = ExtResource( 6 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 5 )
+region = Rect2( 102, 88, 20, 8 )
+
+[sub_resource type="Animation" id=26]
+resource_name = "Paralysed"
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 34, 64, 64 )
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 2 )
+region = Rect2( 3, 3, 100, 30 )
+
+[sub_resource type="DynamicFont" id=17]
+size = 10
+extra_spacing_char = -1
+font_data = ExtResource( 6 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 5 )
+region = Rect2( 38, 80, 20, 8 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 2 )
+region = Rect2( 117, 21, 9, 3 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 2 )
+region = Rect2( 117, 9, 9, 3 )
+
+[sub_resource type="SpriteFrames" id=27]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 297, 56, 240, 48 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 2 )
+region = Rect2( 146, 4, 120, 48 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 2 )
+region = Rect2( 268, 3, 8, 11 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 2 )
+region = Rect2( 297, 4, 240, 48 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 2 )
+region = Rect2( 544, 59, 10, 6 )
+
+[sub_resource type="Animation" id=25]
+resource_name = "Bounce"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextBox/Confirm:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 2 ) ]
+}
+
+[node name="Battle" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="Background" type="Sprite" parent="."]
+texture = SubResource( 1 )
+centered = false
+
+[node name="PlayerPokemon" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerPokemon"]
+root_node = NodePath("../Sprite")
+anims/RESET = SubResource( 9 )
+anims/Tackle = SubResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="PlayerPokemon"]
+position = Vector2( 28, 56 )
+texture = SubResource( 3 )
+centered = false
+
+[node name="SpriteMask" type="Light2D" parent="PlayerPokemon"]
+visible = false
+position = Vector2( 92, 38 )
+texture = SubResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+mode = 3
+
+[node name="StatEffect" type="Sprite" parent="PlayerPokemon/SpriteMask"]
+position = Vector2( 64, -189 )
+texture = SubResource( 20 )
+
+[node name="Stats" type="Sprite" parent="PlayerPokemon"]
+position = Vector2( 177, 92 )
+texture = SubResource( 12 )
+
+[node name="Name" type="Label" parent="PlayerPokemon/Stats"]
+anchor_right = 0.9
+anchor_bottom = 0.5
+margin_left = -36.0
+margin_top = -15.0
+margin_right = -70.4
+margin_bottom = -23.5
+custom_colors/font_color = Color( 0.25098, 0.25098, 0.25098, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Oddish"
+
+[node name="Level" type="Label" parent="PlayerPokemon/Stats"]
+anchor_right = 0.9
+anchor_bottom = 0.5
+margin_left = 36.0
+margin_top = -14.0
+margin_right = -49.4
+margin_bottom = -24.5
+custom_colors/font_color = Color( 0.25098, 0.25098, 0.25098, 1 )
+custom_fonts/font = SubResource( 13 )
+text = "18"
+
+[node name="Health" type="Label" parent="PlayerPokemon/Stats"]
+anchor_right = 0.9
+anchor_bottom = 0.5
+margin_left = 18.0
+margin_top = 4.0
+margin_right = -52.4
+margin_bottom = -7.5
+custom_colors/font_color = Color( 0.25098, 0.25098, 0.25098, 1 )
+custom_fonts/font = SubResource( 13 )
+text = "43/43"
+
+[node name="Status" type="Sprite" parent="PlayerPokemon/Stats"]
+position = Vector2( -31, 7 )
+texture = SubResource( 14 )
+
+[node name="EnemyPokemon" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyPokemon"]
+anims/Paralysed = SubResource( 26 )
+
+[node name="Sprite" type="Sprite" parent="EnemyPokemon"]
+position = Vector2( 148, 15 )
+texture = SubResource( 4 )
+centered = false
+
+[node name="SpriteMask" type="Light2D" parent="EnemyPokemon"]
+visible = false
+position = Vector2( 212, 62 )
+texture = SubResource( 4 )
+offset = Vector2( 0.5, 0.5 )
+mode = 3
+
+[node name="StatEffect" type="Sprite" parent="EnemyPokemon/SpriteMask"]
+position = Vector2( 64, -189 )
+texture = SubResource( 20 )
+
+[node name="Stats" type="Sprite" parent="EnemyPokemon"]
+position = Vector2( 58, 31 )
+texture = SubResource( 10 )
+
+[node name="Name" type="Label" parent="EnemyPokemon/Stats"]
+anchor_right = 0.9
+anchor_bottom = 0.5
+margin_left = -43.0
+margin_top = -11.0
+margin_right = -69.0
+margin_bottom = -14.0
+custom_colors/font_color = Color( 0.25098, 0.25098, 0.25098, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Poliwag"
+
+[node name="Level" type="Label" parent="EnemyPokemon/Stats"]
+anchor_right = 0.9
+anchor_bottom = 0.5
+margin_left = 30.0
+margin_top = -10.0
+margin_right = -50.0
+margin_bottom = -14.0
+custom_colors/font_color = Color( 0.25098, 0.25098, 0.25098, 1 )
+custom_fonts/font = SubResource( 17 )
+text = "14"
+
+[node name="Status" type="Sprite" parent="EnemyPokemon/Stats"]
+position = Vector2( -37, 4 )
+texture = SubResource( 18 )
+
+[node name="Health" type="TextureProgress" parent="EnemyPokemon/Stats"]
+margin_left = -11.0
+margin_top = 2.0
+margin_right = 37.0
+margin_bottom = 5.0
+value = 100.0
+texture_under = SubResource( 22 )
+texture_progress = SubResource( 23 )
+nine_patch_stretch = true
+
+[node name="Tween" type="Tween" parent="EnemyPokemon/Stats/Health"]
+
+[node name="Sprite2" type="AnimatedSprite" parent="EnemyPokemon"]
+frames = SubResource( 27 )
+
+[node name="TextBox" type="Sprite" parent="."]
+position = Vector2( 0, 112 )
+texture = SubResource( 2 )
+centered = false
+
+[node name="Text" type="RichTextLabel" parent="TextBox"]
+margin_left = 14.0
+margin_top = 13.0
+margin_right = 183.0
+margin_bottom = 41.0
+custom_constants/line_separation = 10
+custom_fonts/normal_font = SubResource( 11 )
+visible_characters = 0
+percent_visible = 0.0
+
+[node name="Actions" type="Sprite" parent="TextBox"]
+visible = false
+position = Vector2( 180, 24 )
+texture = SubResource( 15 )
+
+[node name="Cursor" type="Sprite" parent="TextBox/Actions"]
+position = Vector2( -49, -7 )
+texture = SubResource( 16 )
+
+[node name="Moves" type="Sprite" parent="TextBox"]
+visible = false
+position = Vector2( 120, 24 )
+texture = SubResource( 21 )
+
+[node name="Cursor" type="Sprite" parent="TextBox/Moves"]
+position = Vector2( -110, -7 )
+texture = SubResource( 16 )
+
+[node name="Move1" type="Label" parent="TextBox/Moves"]
+anchor_right = 0.9
+anchor_bottom = 0.5
+margin_left = -106.0
+margin_top = -12.0
+margin_right = -265.0
+margin_bottom = -25.0
+custom_colors/font_color = Color( 0.25098, 0.25098, 0.25098, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Tackle"
+
+[node name="Move2" type="Label" parent="TextBox/Moves"]
+anchor_right = 0.9
+anchor_bottom = 0.5
+margin_left = -28.0
+margin_top = -12.0
+margin_right = -188.0
+margin_bottom = -25.0
+custom_colors/font_color = Color( 0.25098, 0.25098, 0.25098, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Stun Spore"
+
+[node name="Move3" type="Label" parent="TextBox/Moves"]
+anchor_right = 0.9
+anchor_bottom = 0.5
+margin_left = -106.0
+margin_top = 4.0
+margin_right = -255.0
+margin_bottom = -10.0
+custom_colors/font_color = Color( 0.25098, 0.25098, 0.25098, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Sleep Powder"
+
+[node name="Move4" type="Label" parent="TextBox/Moves"]
+anchor_right = 0.9
+anchor_bottom = 0.5
+margin_left = -28.0
+margin_top = 4.0
+margin_right = -188.0
+margin_bottom = -10.0
+custom_colors/font_color = Color( 0.25098, 0.25098, 0.25098, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Absorb"
+
+[node name="TypeTween" type="Tween" parent="TextBox"]
+
+[node name="Confirm" type="Sprite" parent="TextBox"]
+position = Vector2( 225, 37 )
+texture = SubResource( 24 )
+offset = Vector2( 0, 0.801891 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextBox/Confirm"]
+root_node = NodePath("../../..")
+autoplay = "Bounce"
+anims/Bounce = SubResource( 25 )
