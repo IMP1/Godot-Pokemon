@@ -2,38 +2,34 @@ extends KinematicBody2D
 
 signal player_moving_signal
 signal player_stopped_signal
-
 signal player_entering_door_signal
 signal player_entered_door_signal
 
-const LandingDustEffect = preload("res://LandingDustEffect.tscn")
+enum PlayerState { IDLE, TURNING, WALKING }
+enum FacingDirection { LEFT, RIGHT, UP, DOWN }
 
-export var walk_speed = 4.0
-export var jump_speed = 4.0
-const TILE_SIZE = 16
+const TILE_SIZE = Utils.TILE_SIZE
+const LANDING_DUST_EFFECT = preload("res://Objects/LandingDustEffect.tscn")
+
+export var walk_speed: float = 4.0
+export var jump_speed: float = 4.0
+
+var jumping_over_ledge: bool = false
+var player_state: int = PlayerState.IDLE
+var facing_direction: int = FacingDirection.DOWN
+var initial_position: Vector2 = Vector2.ZERO
+var input_direction: Vector2 = Vector2(0, 1)
+var is_moving: bool = false
+var stop_input: bool = false
+var percent_moved_to_next_tile: float = 0.0
 
 onready var anim_tree = $AnimationTree
 onready var anim_state = anim_tree.get("parameters/playback")
 onready var ray = $BlockingRayCast2D
 onready var ledge_ray = $LedgeRayCast2D
 onready var door_ray = $DoorRayCast2D
-
 onready var shadow = $Shadow
-var jumping_over_ledge: bool = false
 
-enum PlayerState { IDLE, TURNING, WALKING }
-enum FacingDirection { LEFT, RIGHT, UP, DOWN }
-
-var player_state = PlayerState.IDLE
-var facing_direction = FacingDirection.DOWN
-
-var initial_position = Vector2(0, 0)
-var input_direction = Vector2(0, 1)
-var is_moving = false
-var stop_input: bool = false
-var percent_moved_to_next_tile = 0.0
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	$Sprite.visible = true
 	anim_tree.active = true
@@ -49,7 +45,7 @@ func set_spawn(location: Vector2, direction: Vector2):
 		anim_tree.set("parameters/Turn/blend_position", direction)
 		position = location
 	
-func _physics_process(delta):
+func _physics_process(delta: float):
 	if player_state == PlayerState.TURNING or stop_input:
 		return
 	elif is_moving == false:
@@ -66,12 +62,10 @@ func process_player_movement_input():
 		input_direction.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	if input_direction.x == 0:
 		input_direction.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
-		
 	if input_direction != Vector2.ZERO:
 		anim_tree.set("parameters/Idle/blend_position", input_direction)
 		anim_tree.set("parameters/Walk/blend_position", input_direction)
 		anim_tree.set("parameters/Turn/blend_position", input_direction)
-		
 		if need_to_turn():
 			player_state = PlayerState.TURNING
 			anim_state.travel("Turn")
@@ -80,8 +74,8 @@ func process_player_movement_input():
 			is_moving = true
 	else:
 		anim_state.travel("Idle")
-		
-func need_to_turn():
+
+func need_to_turn() -> bool:
 	var new_facing_direction
 	if input_direction.x < 0:
 		new_facing_direction = FacingDirection.LEFT
@@ -95,7 +89,6 @@ func need_to_turn():
 	if facing_direction != new_facing_direction:
 		facing_direction = new_facing_direction
 		return true
-	facing_direction = new_facing_direction
 	return false
 
 func finished_turning():
@@ -104,7 +97,7 @@ func finished_turning():
 func entered_door():
 	emit_signal("player_entered_door_signal")
 
-func move(delta):
+func move(delta: float):
 	var desired_step: Vector2 = input_direction * TILE_SIZE / 2
 	ray.cast_to = desired_step
 	ray.force_raycast_update()
@@ -138,7 +131,7 @@ func move(delta):
 			jumping_over_ledge = false
 			shadow.visible = false
 			
-			var dust_effect = LandingDustEffect.instance()
+			var dust_effect = LANDING_DUST_EFFECT.instance()
 			dust_effect.position = position
 			get_tree().current_scene.add_child(dust_effect)
 			
