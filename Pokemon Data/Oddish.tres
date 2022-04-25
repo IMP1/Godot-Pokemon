@@ -1,0 +1,63 @@
+[gd_resource type="Resource" load_steps=9 format=2]
+
+[ext_resource path="res://Pokemon Data/Pokemon.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Pokemon/Pokemon43.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 99, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 34, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 115, 14, 8, 14 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 40, 14, 13, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 75, 14, 13, 16 )
+
+[sub_resource type="AnimatedTexture" id=4]
+frames = 2
+frame_0/texture = SubResource( 3 )
+frame_1/texture = SubResource( 5 )
+frame_1/delay_sec = 0.0
+
+[resource]
+script = ExtResource( 1 )
+pokemon_name = "Oddish"
+pokedex_number = 43
+pokedex_entry = "During the day, it keeps its face buried in the ground. At night, it wanders around sowing its seeds."
+weight = "5.4 kg"
+height = "0.5 m"
+type_1 = 12
+type_2 = 4
+base_experience_yield = 78
+ev_yield_HP = 0
+ev_yield_attack = 0
+ev_yield_defence = 0
+ev_yield_special_attack = 1
+ev_yield_special_defence = 0
+ev_yield_speed = 0
+egg_group = 12
+hp = 45
+attack = 50
+defence = 55
+special_attack = 75
+special_defence = 65
+speed = 30
+learnset = [  ]
+learnable_tms = PoolIntArray(  )
+learnable_hms = PoolIntArray(  )
+evolutions = [  ]
+spriteBattleFront = SubResource( 1 )
+spriteBattleBack = SubResource( 2 )
+spriteMenu = SubResource( 4 )
+spriteFootprint = SubResource( 6 )
+game_locations = [  ]

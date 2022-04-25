@@ -1,0 +1,114 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/UI/Battle/BattleUI.png" type="Texture" id=1]
+[ext_resource path="res://Assets/UI/pkmnfl.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://GUI/BattleMoves.gd" type="Script" id=3]
+[ext_resource path="res://Assets/UI/Types_Statuses.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 1 )
+region = Rect2( 297, 4, 240, 48 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 1 )
+region = Rect2( 268, 3, 8, 11 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 11
+font_data = ExtResource( 2 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 2, 32, 12 )
+
+[node name="Control" type="TextureRect"]
+margin_right = 240.0
+margin_bottom = 48.0
+texture = SubResource( 21 )
+script = ExtResource( 3 )
+
+[node name="Cursor" type="TextureRect" parent="."]
+margin_left = 6.0
+margin_top = 10.0
+margin_right = 14.0
+margin_bottom = 23.0
+texture = SubResource( 16 )
+
+[node name="Moves" type="GridContainer" parent="."]
+anchor_top = 0.5
+anchor_right = 0.658
+anchor_bottom = 0.5
+margin_left = 13.0
+margin_top = -12.0
+margin_right = -3.92001
+margin_bottom = 18.0
+custom_constants/vseparation = 4
+custom_constants/hseparation = 9
+columns = 2
+
+[node name="Move1" type="Label" parent="Moves"]
+margin_right = 69.0
+margin_bottom = 11.0
+rect_min_size = Vector2( 60, 11 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Tackle"
+
+[node name="Move2" type="Label" parent="Moves"]
+margin_left = 78.0
+margin_right = 138.0
+margin_bottom = 11.0
+rect_min_size = Vector2( 60, 11 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Stunspore"
+
+[node name="Move3" type="Label" parent="Moves"]
+margin_top = 15.0
+margin_right = 69.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 60, 11 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Poison Powder"
+
+[node name="Move4" type="Label" parent="Moves"]
+margin_left = 78.0
+margin_top = 15.0
+margin_right = 138.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 60, 11 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Absorb"
+
+[node name="MoveInfo" type="Control" parent="."]
+margin_left = 160.0
+margin_right = 240.0
+margin_bottom = 48.0
+
+[node name="PP" type="Label" parent="MoveInfo"]
+margin_left = 32.0
+margin_top = 12.0
+margin_right = 52.0
+margin_bottom = 26.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "10"
+align = 2
+
+[node name="PP_Max" type="Label" parent="MoveInfo"]
+margin_left = 61.0
+margin_top = 12.0
+margin_right = 101.0
+margin_bottom = 26.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "12"
+
+[node name="Type" type="TextureRect" parent="MoveInfo"]
+margin_left = 34.0
+margin_top = 27.0
+margin_right = 74.0
+margin_bottom = 41.0
+texture = SubResource( 22 )

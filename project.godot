@@ -8,8 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Resource",
+"class": "Move",
+"language": "GDScript",
+"path": "res://Move Data/Move.gd"
+}, {
+"base": "Resource",
+"class": "PokemonData",
+"language": "GDScript",
+"path": "res://Pokemon Data/Pokemon.gd"
+} ]
 _global_script_class_icons={
+"Move": "",
+"PokemonData": ""
 }
 
 [application]

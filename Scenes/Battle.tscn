@@ -8,6 +8,8 @@
 [ext_resource path="res://Assets/UI/pkmnfl.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Assets/UI/Battle/StatEffects.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/Battle.gd" type="Script" id=8]
+[ext_resource path="res://GUI/BattleMoves.tscn" type="PackedScene" id=9]
+[ext_resource path="res://GUI/BattleActions.tscn" type="PackedScene" id=10]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -112,9 +114,21 @@ font_data = ExtResource( 6 )
 size = 10
 font_data = ExtResource( 6 )
 
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 2 )
+region = Rect2( 117, 21, 9, 3 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 2 )
+region = Rect2( 117, 9, 9, 3 )
+
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 5 )
 region = Rect2( 102, 88, 20, 8 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 2 )
+region = Rect2( 129, 9, 7, 2 )
 
 [sub_resource type="Animation" id=26]
 resource_name = "Paralysed"
@@ -137,14 +151,6 @@ font_data = ExtResource( 6 )
 atlas = ExtResource( 5 )
 region = Rect2( 38, 80, 20, 8 )
 
-[sub_resource type="AtlasTexture" id=22]
-atlas = ExtResource( 2 )
-region = Rect2( 117, 21, 9, 3 )
-
-[sub_resource type="AtlasTexture" id=23]
-atlas = ExtResource( 2 )
-region = Rect2( 117, 9, 9, 3 )
-
 [sub_resource type="SpriteFrames" id=27]
 animations = [ {
 "frames": [  ],
@@ -156,18 +162,6 @@ animations = [ {
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
 region = Rect2( 297, 56, 240, 48 )
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 2 )
-region = Rect2( 146, 4, 120, 48 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 2 )
-region = Rect2( 268, 3, 8, 11 )
-
-[sub_resource type="AtlasTexture" id=21]
-atlas = ExtResource( 2 )
-region = Rect2( 297, 4, 240, 48 )
 
 [sub_resource type="AtlasTexture" id=24]
 atlas = ExtResource( 2 )
@@ -246,7 +240,19 @@ custom_colors/font_color = Color( 0.25098, 0.25098, 0.25098, 1 )
 custom_fonts/font = SubResource( 13 )
 text = "18"
 
-[node name="Health" type="Label" parent="PlayerPokemon/Stats"]
+[node name="Health" type="TextureProgress" parent="PlayerPokemon/Stats"]
+margin_left = -5.0
+margin_top = -2.0
+margin_right = 43.0
+margin_bottom = 1.0
+value = 100.0
+texture_under = SubResource( 22 )
+texture_progress = SubResource( 23 )
+nine_patch_stretch = true
+
+[node name="Tween" type="Tween" parent="PlayerPokemon/Stats/Health"]
+
+[node name="HealthNumber" type="Label" parent="PlayerPokemon/Stats"]
 anchor_right = 0.9
 anchor_bottom = 0.5
 margin_left = 18.0
@@ -260,6 +266,17 @@ text = "43/43"
 [node name="Status" type="Sprite" parent="PlayerPokemon/Stats"]
 position = Vector2( -31, 7 )
 texture = SubResource( 14 )
+
+[node name="Experience" type="TextureProgress" parent="PlayerPokemon/Stats"]
+margin_left = -21.0
+margin_top = 14.0
+margin_right = 43.0
+margin_bottom = 16.0
+value = 50.0
+texture_progress = SubResource( 29 )
+nine_patch_stretch = true
+
+[node name="Tween" type="Tween" parent="PlayerPokemon/Stats/Experience"]
 
 [node name="EnemyPokemon" type="Node2D" parent="."]
 
@@ -332,6 +349,8 @@ position = Vector2( 0, 112 )
 texture = SubResource( 2 )
 centered = false
 
+[node name="TypeTween" type="Tween" parent="TextBox"]
+
 [node name="Text" type="RichTextLabel" parent="TextBox"]
 margin_left = 14.0
 margin_top = 13.0
@@ -342,70 +361,6 @@ custom_fonts/normal_font = SubResource( 11 )
 visible_characters = 0
 percent_visible = 0.0
 
-[node name="Actions" type="Sprite" parent="TextBox"]
-visible = false
-position = Vector2( 180, 24 )
-texture = SubResource( 15 )
-
-[node name="Cursor" type="Sprite" parent="TextBox/Actions"]
-position = Vector2( -49, -7 )
-texture = SubResource( 16 )
-
-[node name="Moves" type="Sprite" parent="TextBox"]
-visible = false
-position = Vector2( 120, 24 )
-texture = SubResource( 21 )
-
-[node name="Cursor" type="Sprite" parent="TextBox/Moves"]
-position = Vector2( -110, -7 )
-texture = SubResource( 16 )
-
-[node name="Move1" type="Label" parent="TextBox/Moves"]
-anchor_right = 0.9
-anchor_bottom = 0.5
-margin_left = -106.0
-margin_top = -12.0
-margin_right = -265.0
-margin_bottom = -25.0
-custom_colors/font_color = Color( 0.25098, 0.25098, 0.25098, 1 )
-custom_fonts/font = SubResource( 11 )
-text = "Tackle"
-
-[node name="Move2" type="Label" parent="TextBox/Moves"]
-anchor_right = 0.9
-anchor_bottom = 0.5
-margin_left = -28.0
-margin_top = -12.0
-margin_right = -188.0
-margin_bottom = -25.0
-custom_colors/font_color = Color( 0.25098, 0.25098, 0.25098, 1 )
-custom_fonts/font = SubResource( 11 )
-text = "Stun Spore"
-
-[node name="Move3" type="Label" parent="TextBox/Moves"]
-anchor_right = 0.9
-anchor_bottom = 0.5
-margin_left = -106.0
-margin_top = 4.0
-margin_right = -255.0
-margin_bottom = -10.0
-custom_colors/font_color = Color( 0.25098, 0.25098, 0.25098, 1 )
-custom_fonts/font = SubResource( 11 )
-text = "Sleep Powder"
-
-[node name="Move4" type="Label" parent="TextBox/Moves"]
-anchor_right = 0.9
-anchor_bottom = 0.5
-margin_left = -28.0
-margin_top = 4.0
-margin_right = -188.0
-margin_bottom = -10.0
-custom_colors/font_color = Color( 0.25098, 0.25098, 0.25098, 1 )
-custom_fonts/font = SubResource( 11 )
-text = "Absorb"
-
-[node name="TypeTween" type="Tween" parent="TextBox"]
-
 [node name="Confirm" type="Sprite" parent="TextBox"]
 position = Vector2( 225, 37 )
 texture = SubResource( 24 )
@@ -415,3 +370,18 @@ offset = Vector2( 0, 0.801891 )
 root_node = NodePath("../../..")
 autoplay = "Bounce"
 anims/Bounce = SubResource( 25 )
+
+[node name="Actions" parent="." instance=ExtResource( 10 )]
+margin_left = 120.0
+margin_top = 112.0
+margin_right = 240.0
+margin_bottom = 160.0
+
+[node name="Moves" parent="." instance=ExtResource( 9 )]
+visible = false
+margin_top = 112.0
+margin_bottom = 160.0
+
+[connection signal="action_selected" from="Actions" to="." method="action_selected"]
+[connection signal="closing" from="Moves" to="." method="cancel_moves"]
+[connection signal="move_selected" from="Moves" to="." method="move_selected"]

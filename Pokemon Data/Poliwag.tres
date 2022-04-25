@@ -1,0 +1,63 @@
+[gd_resource type="Resource" load_steps=9 format=2]
+
+[ext_resource path="res://Pokemon Data/Pokemon.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Pokemon/Pokemon60.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 99, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 34, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 116, 14, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 36, 11, 21, 18 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 71, 11, 21, 18 )
+
+[sub_resource type="AnimatedTexture" id=4]
+frames = 2
+frame_0/texture = SubResource( 5 )
+frame_1/texture = SubResource( 6 )
+frame_1/delay_sec = 0.0
+
+[resource]
+script = ExtResource( 1 )
+pokemon_name = "Poliwag"
+pokedex_number = 60
+pokedex_entry = "Its newly grown legs prevent it from walking well. It appears to prefer swimming over walking."
+weight = "12.4 kg"
+height = "0.6 m"
+type_1 = 11
+type_2 = 0
+base_experience_yield = 77
+ev_yield_HP = 0
+ev_yield_attack = 0
+ev_yield_defence = 0
+ev_yield_special_attack = 0
+ev_yield_special_defence = 0
+ev_yield_speed = 1
+egg_group = 2
+hp = 40
+attack = 50
+defence = 40
+special_attack = 40
+special_defence = 40
+speed = 90
+learnset = [  ]
+learnable_tms = PoolIntArray(  )
+learnable_hms = PoolIntArray(  )
+evolutions = [  ]
+spriteBattleFront = SubResource( 1 )
+spriteBattleBack = SubResource( 2 )
+spriteMenu = SubResource( 4 )
+spriteFootprint = SubResource( 3 )
+game_locations = [  ]

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Move Data/Move.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+move_name = "Tackle"
+type = 1
+category = 1
+contact = true
+starting_pp = 35
+max_pp = 56
+power = 40
+accuracy = 100
+affected_by_protect = true
+affected_by_magic_coat = false
+affected_by_snatch = false
+affected_by_mirror_move = true
+affected_by_kings_rock = true
